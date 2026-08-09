@@ -4942,7 +4942,7 @@ function generateHTML(备案内容) {
 			const org = firstNonEmpty(exitData?.asnInfo?.org, exitData?.asOrganization);
 			return firstNonEmpty(
 				joinNonEmptyValues([
-					asn ? 'AS' + asn : '',
+					asn ? '' + asn : '',
 					route || org
 				], ' / '),
 				'未知'
@@ -6241,7 +6241,7 @@ function generateHTML(备案内容) {
 			const asn = normalizeExportValue(exitData.asn);
 			const asOrganization = normalizeExportValue(exitData.asOrganization);
 			const locationSegment = [country, city].filter(Boolean).join(' ') + buildTextExportTypeTag(exitData);
-			const networkSegment = [asn ? 'AS' + asn : '', asOrganization].filter(Boolean).join(' ') + buildTextExportRiskTag(exitData);
+			const networkSegment = [asn ? '' + asn : '', asOrganization].filter(Boolean).join(' ') + buildTextExportRiskTag(exitData);
 			const description = [locationSegment, networkSegment].filter(Boolean).join(' ');
 			return exportTarget + (description ? '#' + description : '');
 		}
@@ -6539,11 +6539,11 @@ function generateHTML(备案内容) {
 			const organization = String(exitData?.asOrganization || '').trim();
 
 			if (asn && organization) {
-				return 'AS' + asn + ' · ' + organization;
+				return '' + asn + ' · ' + organization;
 			}
 
 			if (asn) {
-				return 'AS' + asn;
+				return '' + asn;
 			}
 
 			return organization;
@@ -6717,7 +6717,7 @@ function generateHTML(备案内容) {
 				asn: asn,
 				asnInfo: asnInfo,
 				asOrganization: asOrganization,
-				org: firstNonEmpty(exit.org, asn ? 'AS' + asn + (asOrganization ? ' ' + asOrganization : '') : asOrganization),
+				org: firstNonEmpty(exit.org, asn ? '' + asn + (asOrganization ? ' ' + asOrganization : '') : asOrganization),
 				continent: firstNonEmpty(exit.continent, location.continent),
 				country: firstNonEmpty(exit.country, countryCode, countryName),
 				countryCode: countryCode,
