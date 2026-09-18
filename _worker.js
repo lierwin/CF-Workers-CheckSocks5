@@ -1,4 +1,4 @@
-﻿import { connect } from 'cloudflare:sockets';
+import { connect } from 'cloudflare:sockets';
 
 const CHECK_TIMEOUT_MS = 12000;
 const CONNECT_TIMEOUT_MS = 9999;
@@ -6254,7 +6254,7 @@ function generateHTML(备案内容) {
 
 		function getExportableRecords() {
 			return getCurrentFilteredRecords().filter(function (record) {
-				return record.status === 'success' && Boolean(record.data);
+				return record.status === 'success' || record.status === 'error' || record.status === 'stopped';
 			});
 		}
 
@@ -6370,7 +6370,7 @@ function generateHTML(备案内容) {
 
 		function buildTextExport(records) {
 			return records.map(function (record) {
-				return buildTextExportLine(record.data);
+				return buildTextExportLine(record.data) || record.target;
 			}).filter(Boolean).join('\\n');
 		}
 
